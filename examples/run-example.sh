@@ -12,11 +12,24 @@ TEMP_DIR=$(mktemp -d)
 trap "rm -rf $TEMP_DIR" EXIT
 
 # Copy necessary files
-cp example.go ../job.go ../monitor.go ../scheduler.go ../go.mod ../go.sum "$TEMP_DIR/" 2>/dev/null || true
+if [ ! -f ../job.go ] || [ ! -f ../monitor.go ] || [ ! -f ../scheduler.go ]; then
+    echo "Error: Required source files not found in parent directory"
+    exit 1
+fi
+
+cp example.go ../job.go ../monitor.go ../scheduler.go "$TEMP_DIR/"
+if [ -f ../go.mod ]; then
+    cp ../go.mod "$TEMP_DIR/"
+fi
+if [ -f ../go.sum ]; then
+    cp ../go.sum "$TEMP_DIR/"
+fi
 
 # Build
 cd "$TEMP_DIR"
-go mod download 2>/dev/null || true
+if [ -f go.mod ]; then
+    go mod download
+fi
 go build -o example-run .
 
 echo ""

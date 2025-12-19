@@ -42,8 +42,8 @@ example:
 
 # Install the CLI globally
 install: build
-	@echo "Installing go-smart-queue to $(GOPATH)/bin..."
-	@cp go-smart-queue $(GOPATH)/bin/
+	@echo "Installing go-smart-queue..."
+	@go install .
 
 # Show help
 help:
