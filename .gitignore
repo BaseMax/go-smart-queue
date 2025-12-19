@@ -1,5 +1,7 @@
 # Binaries
 go-smart-queue
+example
+debug_example
 *.exe
 *.dll
 *.so
