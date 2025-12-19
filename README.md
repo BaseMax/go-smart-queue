@@ -17,7 +17,32 @@ A smart Go job scheduler that runs tasks while monitoring CPU, memory, and IO us
 ```bash
 git clone https://github.com/BaseMax/go-smart-queue.git
 cd go-smart-queue
+make build
+```
+
+Or using Go directly:
+
+```bash
 go build -o go-smart-queue
+```
+
+### Quick Start with Make
+
+```bash
+# Build the application
+make build
+
+# Run tests
+make test
+
+# Run the example
+make example
+
+# Clean build artifacts
+make clean
+
+# See all available commands
+make help
 ```
 
 ## Usage
@@ -132,12 +157,32 @@ Jobs are only executed when system resources are below their defined constraints
 ./go-smart-queue dashboard
 ```
 
+### Programmatic Usage
+
+See the `examples/` directory for a complete example of using the scheduler programmatically:
+
+```bash
+cd examples
+./run-example.sh
+```
+
+The example demonstrates:
+- Creating multiple jobs with different priorities
+- Real-time monitoring of job execution
+- Resource-based throttling
+- Priority-based scheduling
+
 ## Testing
 
 Run the test suite:
 
 ```bash
 go test -v
+# Or using make
+make test
+
+# With coverage report
+make test-coverage
 ```
 
 ## Configuration
